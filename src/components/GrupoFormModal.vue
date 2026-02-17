@@ -3,7 +3,8 @@ const props = defineProps({
   visible: Boolean,
   loading: Boolean,
   form: Object,
-  title: String
+  title: String,
+  profesores: Array
 })
 
 const emit = defineEmits(['submit', 'update:visible'])
@@ -34,7 +35,7 @@ const emit = defineEmits(['submit', 'update:visible'])
         </div>
         
         <div>
-          <label>Capacidad máxima *</label>
+          <label>Capacidad máxima</label>
           <input 
             v-model.number="props.form.capacidad_maxima" 
             type="number" 
@@ -46,8 +47,15 @@ const emit = defineEmits(['submit', 'update:visible'])
         
         <div>
           <label>Profesor tutor (opcional)</label>
-          <select v-model="props.form.profesor_tutor_id">
-            <option value="">Seleccionar profesor</option>
+          <select v-model="props.form.profesor_tutor_id" class="form-control">
+            <option value="">Sin tutor asignado</option>
+            <option 
+              v-for="profesor in props.profesores" 
+              :key="profesor.id" 
+              :value="profesor.id"
+            >
+              {{ profesor.name }} ({{ profesor.email }})
+            </option>
           </select>
         </div>
         

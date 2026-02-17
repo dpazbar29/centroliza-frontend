@@ -1,13 +1,14 @@
 <script setup>
 import GrupoCard from '@/components/GrupoCard.vue'
 
-defineProps({
+const props = defineProps({
   grupos: Array,
   loading: Boolean,
   centroId: Number,
   etapaId: Number,
   cursoId: Number,
-  asignaturaId: Number
+  asignaturaId: Number,
+  profesoresCentro: Array 
 })
 defineEmits(['edit', 'delete'])
 </script>
@@ -31,6 +32,7 @@ defineEmits(['edit', 'delete'])
         :etapa-id="etapaId"
         :curso-id="cursoId"
         :asignatura-id="asignaturaId"
+        :profesores-centro="props.profesoresCentro"
         @edit="$emit('edit', $event)"
         @delete="$emit('delete', $event)"
       />

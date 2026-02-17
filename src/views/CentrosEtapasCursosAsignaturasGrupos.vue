@@ -6,6 +6,7 @@ import { useGrupos } from '@/composables/useGrupos'
 import api from '@/api/auth'
 import GruposList from '@/components/GruposList.vue'
 import GrupoFormModal from '@/components/GrupoFormModal.vue'
+import { useProfesoresAsignatura } from '@/composables/useProfesoresAsignatura'
 
 const route = useRoute()
 const auth = useAuthStore()
@@ -13,6 +14,11 @@ const {
   centroId, etapaId, cursoId, asignaturaId, 
   grupos, loading, refreshGrupos 
 } = useGrupos()
+
+const {  
+  profesoresCentro, 
+  refreshProfesoresCentro 
+} = useProfesoresAsignatura()
 
 const modalVisible = ref(false)
 const editMode = ref(false)
@@ -29,7 +35,11 @@ const abrirModal = (grupo = null) => {
   if (grupo) {
     editMode.value = true
     grupoEditando.value = grupo
-    form.value = { ...grupo }
+    form.value = { 
+      nombre_grupo: grupo.nombre_grupo,
+      profesor_tutor_id: grupo.profesor_tutor_id,
+      capacidad_maxima: grupo.capacidad_maxima
+    }
   } else {
     editMode.value = false
     grupoEditando.value = null
@@ -69,8 +79,11 @@ const eliminarGrupo = async (grupoId) => {
   }
 }
 
-onMounted(() => {
-  refreshGrupos()
+onMounted(async () => {
+  await Promise.all([
+    refreshGrupos(),
+    refreshProfesoresCentro()
+  ])
 })
 </script>
 
@@ -95,6 +108,7 @@ onMounted(() => {
       :etapa-id="etapaId"
       :curso-id="cursoId"
       :asignatura-id="asignaturaId"
+      :profesores-centro="profesoresCentro"
       @edit="abrirModal($event)"
       @delete="eliminarGrupo($event)"
     />
@@ -105,6 +119,7 @@ onMounted(() => {
       :loading="submitLoading"
       :form="form"
       :title="editMode ? 'Editar Grupo' : 'Nuevo Grupo'"
+      :profesores="profesoresCentro"
       @submit="guardarGrupo"
       @update:visible="modalVisible = $event"
     />
