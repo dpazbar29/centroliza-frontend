@@ -28,6 +28,11 @@ defineProps({
         >
           Grupos
         </router-link>
+        <router-link 
+          :to="`/centros/${centroId}/etapas/${etapaId}/cursos/${cursoId}/asignaturas/${asignatura.id}/profesores`"
+        >
+          Profesores
+        </router-link>
         <button 
           @click="$emit('edit', asignatura)"
           title="Editar"
