@@ -10,6 +10,7 @@ import CentrosEtapas from '@/views/CentrosEtapas.vue';
 import CentrosEtapasCursos from '@/views/CentrosEtapasCursos.vue';
 import CentrosEtapasCursosAsignaturas from '@/views/CentrosEtapasCursosAsignaturas.vue';
 import CentrosEtapasCursosAsignaturasProfesores from '@/views/CentrosEtapasCursosAsignaturasProfesores.vue';
+import CentrosEtapasCursosAsignaturasGrupos from '@/views/CentrosEtapasCursosAsignaturasGrupos.vue';
 
 const routes = [
   { path: '/', name: 'home', component: Home },
@@ -22,6 +23,7 @@ const routes = [
   { path: '/centros/:centro/etapas/:etapa/cursos', name: 'CentrosEtapasCursos', component: CentrosEtapasCursos, meta: { requiresAuth: true } },
   { path: '/centros/:centro/etapas/:etapa/cursos/:curso/asignaturas', name: 'CentrosEtapasCursosAsignaturas', component: CentrosEtapasCursosAsignaturas, meta: { requiresAuth: true } },
   { path: '/centros/:centro/etapas/:etapa/cursos/:curso/asignaturas/:asignatura/profesores', name: 'CentrosEtapasCursosAsignaturasProfesores', component: CentrosEtapasCursosAsignaturasProfesores, meta: { requiresAuth: true } },
+  { path: '/centros/:centro/etapas/:etapa/cursos/:curso/asignaturas/:asignatura/grupos', name: 'CentrosEtapasCursosAsignaturasGrupos', component: CentrosEtapasCursosAsignaturasGrupos, meta: { requiresAuth: true } },
 ];
 
 const router = createRouter({
