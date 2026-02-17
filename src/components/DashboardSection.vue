@@ -21,14 +21,30 @@ defineEmits(['create-centro'])
     </div>
   </section>
 
-  <section v-else-if="user.role === 'profesor'">
-    <h2>Panel de profesor</h2>
-    <p>Verás tus clases, alumnos y comunicaciones.</p>
+  <section v-else-if="user.role === 'profesor'" :class="sectionClass">
+    <div v-if="!hasCentro">
+      <h2>Únete a un centro</h2>
+      <p>Introduce el ID del centro que te ha proporcionado el director.</p>
+      <router-link to="/unirse-centro">Unirme por ID</router-link>
+    </div>
+    <div v-else>
+      <h2>Ya estás en un centro</h2>
+      <p>Verás tus clases, alumnos y comunicaciones.</p>
+      <router-link to="/centros">Ir al Centro</router-link>
+    </div>
   </section>
 
-  <section v-else>
-    <h2>Panel de usuario</h2>
-    <p>Podrás unirte a un centro y ver contenido.</p>
+  <section v-else :class="sectionClass">
+    <div v-if="!hasCentro">
+      <h2>Únete a un centro</h2>
+      <p>Introduce el ID del centro para ver el contenido.</p>
+      <router-link to="/unirse-centro">Unirme por ID</router-link>
+    </div>
+    <div v-else>
+      <h2>Ya estás en un centro</h2>
+      <p>Podrás ver el contenido del centro.</p>
+      <router-link to="/centros">Ir al Centro</router-link>
+    </div>
   </section>
 </template>
 

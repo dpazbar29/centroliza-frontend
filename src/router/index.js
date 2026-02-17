@@ -5,6 +5,7 @@ import Login from '@/views/Login.vue';
 import Register from '@/views/Register.vue';
 import Dashboard from '@/views/Dashboard.vue';
 import Centros from '@/views/Centros.vue';
+import UnirseCentro from '@/views/UnirseCentro.vue';
 
 const routes = [
   { path: '/', name: 'home', component: Home },
@@ -12,6 +13,7 @@ const routes = [
   { path: '/register', name: 'register', component: Register, meta: { guestOnly: true } },
   { path: '/dashboard', name: 'dashboard', component: Dashboard, meta: { requiresAuth: true } },
   { path: '/centros', name: 'centros', component: Centros, meta: { requiresAuth: true } },
+  { path: '/unirse-centro', name: 'unirse-centro', component: UnirseCentro, meta: { requiresAuth: true } },
 ];
 
 const router = createRouter({
