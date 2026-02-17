@@ -27,6 +27,8 @@
         :key="etapa.id"
         :etapa="etapa"
         :centro-id="centroId"
+        @edit="$emit('edit', $event)"
+        @delete="$emit('delete', $event)"
       />
     </div>
   </div>

@@ -1,7 +1,8 @@
 <script setup>
 defineProps({
-  etapa: Object,
+  curso: Object,
   centroId: Number,
+  etapaId: Number,
   onEdit: Function,
   onDelete: Function
 })
@@ -11,28 +12,24 @@ defineProps({
   <div>
     <div>
       <div>
-        <h3>{{ etapa.nombre }}</h3>
-        <p>Orden: {{ etapa.orden }}</p>
-        <p>Años: {{ etapa.anos_duracion }}</p>
-        <p>
-          Cursos: {{ etapa.cursos_count || 0 }}
-        </p>
+        <h3>{{ curso.nombre }}</h3>
+        <p>Código: {{ curso.codigo_curso || 'N/A' }}</p>
+        <p>Año académico: {{ curso.ano_academico }}</p>
       </div>
-      
       <div>
         <router-link 
-          :to="`/centros/${centroId}/etapas/${etapa.id}/cursos`"
+          :to="`/centros/${centroId}/etapas/${etapaId}/cursos/${curso.id}/asignaturas`"
         >
-          Cursos
+          Asignaturas
         </router-link>
         <button 
-          @click="$emit('edit', etapa)"
+          @click="$emit('edit', curso)"
           title="Editar"
         >
           Editar
         </button>
         <button 
-          @click="$emit('delete', etapa.id)"
+          @click="$emit('delete', curso.id)"
           title="Eliminar"
         >
           Eliminar
@@ -41,4 +38,3 @@ defineProps({
     </div>
   </div>
 </template>
-

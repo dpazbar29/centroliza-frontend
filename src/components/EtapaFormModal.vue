@@ -4,7 +4,8 @@
     const props = defineProps({
     visible: Boolean,
     loading: Boolean,
-    form: Object
+    form: Object,
+    title: String
     })
 
     const emit = defineEmits(['submit', 'update:visible'])
@@ -13,7 +14,7 @@
 <template>
   <div v-if="props.visible" @click.self="$emit('update:visible', false)">
     <div>
-      <h3>Nueva Etapa</h3>
+      <h3>{{ props.title }}</h3>
       <form @submit.prevent="$emit('submit')">
         <div>
           <label>Nombre</label>
