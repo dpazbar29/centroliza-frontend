@@ -8,6 +8,7 @@ import Centros from '@/views/Centros.vue';
 import UnirseCentro from '@/views/UnirseCentro.vue';
 import CentrosEtapas from '@/views/CentrosEtapas.vue';
 import CentrosEtapasCursos from '@/views/CentrosEtapasCursos.vue';
+import CentrosEtapasCursosAsignaturas from '@/views/CentrosEtapasCursosAsignaturas.vue';
 
 const routes = [
   { path: '/', name: 'home', component: Home },
@@ -18,7 +19,7 @@ const routes = [
   { path: '/unirse-centro', name: 'unirse-centro', component: UnirseCentro, meta: { requiresAuth: true } },
   { path: '/centros/:centro/etapas', name: 'CentrosEtapas', component: CentrosEtapas, meta: { requiresAuth: true } },
   { path: '/centros/:centro/etapas/:etapa/cursos', name: 'CentrosEtapasCursos', component: CentrosEtapasCursos, meta: { requiresAuth: true } },
-
+  { path: '/centros/:centro/etapas/:etapa/cursos/:curso/asignaturas', name: 'CentrosEtapasCursosAsignaturas', component: CentrosEtapasCursosAsignaturas, meta: { requiresAuth: true } },
 ];
 
 const router = createRouter({
