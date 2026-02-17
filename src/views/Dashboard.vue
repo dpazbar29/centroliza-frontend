@@ -1,39 +1,46 @@
 <script setup>
-import { computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useAuthStore } from '@/stores/auth'
+import api from '@/api/auth'
+import CentroModal from '@/components/CentroModal.vue'
+import DashboardSection from '@/components/DashboardSection.vue'
 
 const auth = useAuthStore()
+const showModal = ref(false)
+const loading = ref(false)
+const error = ref(null)
 
-const crearCentro = () => {
-  console.log('Crear centro (pendiente de implementar)')
+const hasCentro = computed(() => auth.user?.centro_id > 0)
+
+const handleCentroCreated = async () => {
+  await auth.fetchMe()
+  showModal.value = false
 }
+
+onMounted(() => {
+  auth.fetchMe()
+})
 </script>
 
 <template>
   <div>
-    <h1>Panel</h1>
-
-    <p v-if="!auth.user">Cargando datos de usuario...</p>
-
-    <template v-else>
-      <section v-if="auth.role === 'director'">
-        <h2>Panel de dirección</h2>
-        <p>Aquí podrás crear y gestionar tu centro.</p>
-        <button @click="crearCentro">Crear centro</button>
-      </section>
-
-      <section v-else-if="auth.role === 'profesor'">
-        <h2>Panel de profesor</h2>
-        <p>Verás tus clases, alumnos y comunicaciones.</p>
-      </section>
-
-      <section v-else>
-        <h2>Panel de usuario</h2>
-        <p>
-          Podrás unirte a un centro y ver el contenido que publiquen
-          directivos y profesores.
-        </p>
-      </section>
-    </template>
+    <h1>Panel de {{ auth.role }}</h1>
+    
+    <p v-if="!auth.user">Cargando...</p>
+    
+    <DashboardSection 
+      v-else
+      :user="auth.user"
+      :has-centro="hasCentro"
+      @create-centro="showModal = true"
+    />
+    
+    <CentroModal 
+      :visible="showModal"
+      :loading="loading"
+      :error="error"
+      @update:visible="showModal = $event"
+      @create="handleCentroCreated"
+    />
   </div>
 </template>
