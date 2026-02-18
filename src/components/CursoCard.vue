@@ -18,6 +18,11 @@ defineProps({
       </div>
       <div>
         <router-link 
+          :to="`/centros/${centroId}/etapas/${etapaId}/cursos/${curso.id}/matriculas`"
+        >
+          Matrículas
+        </router-link>
+        <router-link 
           :to="`/centros/${centroId}/etapas/${etapaId}/cursos/${curso.id}/asignaturas`"
         >
           Asignaturas
