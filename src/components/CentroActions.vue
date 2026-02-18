@@ -22,5 +22,8 @@
     <router-link :to="`/centros/${centroId}/alumnos`">
       Gestionar Alumnos
     </router-link>
+    <router-link :to="`/centros/${centroId}/avisos`">
+      Avisos
+    </router-link>
   </div>
 </template>

@@ -32,6 +32,12 @@ const tutorNombre = () => {
         >
           Asistencias
         </router-link>
+
+        <router-link 
+          :to="`/centros/${centroId}/etapas/${etapaId}/cursos/${cursoId}/asignaturas/${asignaturaId}/grupos/${grupo.id}/evaluaciones`"
+        >
+          Evaluaciones
+        </router-link>
         <button @click="$emit('edit', grupo)">Editar</button>
         <button @click="$emit('delete', grupo.id)">Eliminar</button>
       </div>

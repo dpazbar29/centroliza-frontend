@@ -15,6 +15,8 @@ import CentroProfesores from '@/views/CentroProfesores.vue';
 import CentroAlumnos from '@/views/CentroAlumnos.vue';
 import CentrosEtapasCursosMatriculas from '@/views/CentrosEtapasCursosMatriculas.vue';
 import CentrosEtapasCrusosAsignaturasGruposAsistencias from '@/views/CentrosEtapasCursosAsignaturasGruposAsistencias.vue';
+import CentrosEtapasCrusosAsignaturasGruposEvaluaciones from '@/views/CentrosEtapasCursosAsignaturasGruposEvaluaciones.vue';
+import CentroAvisos from '@/views/CentroAvisos.vue';
 
 const routes = [
   { path: '/', name: 'home', component: Home },
@@ -31,7 +33,9 @@ const routes = [
   { path: '/centros/:centro/profesores', name: 'CentroProfesores', component: CentroProfesores, meta: { requiresAuth: true } },
   { path: '/centros/:centro/alumnos', name: 'CentroAlumnos', component: CentroAlumnos, meta: { requiresAuth: true } },
   { path: '/centros/:centro/etapas/:etapa/cursos/:curso/matriculas', name: 'CentrosEtapasCursosMatriculas', component: CentrosEtapasCursosMatriculas, meta: {requiresAuth: true } },
-  { path: '/centros/:centro/etapas/:etapa/cursos/:curso/asignaturas/:asignatura/grupos/:grupo/asistencias', name: 'CentrosEtapasCrusosAsignaturasGruposAsistencias', component: CentrosEtapasCrusosAsignaturasGruposAsistencias, meta: { requiresAuth: true }}
+  { path: '/centros/:centro/etapas/:etapa/cursos/:curso/asignaturas/:asignatura/grupos/:grupo/asistencias', name: 'CentrosEtapasCrusosAsignaturasGruposAsistencias', component: CentrosEtapasCrusosAsignaturasGruposAsistencias, meta: { requiresAuth: true }},
+  { path: '/centros/:centro/etapas/:etapa/cursos/:curso/asignaturas/:asignatura/grupos/:grupo/evaluaciones', name: 'CentrosEtapasCursosAsignaturasGruposEvaluaciones', component: CentrosEtapasCrusosAsignaturasGruposEvaluaciones, meta: { requiresAuth: true } },
+  { path: '/centros/:centro/avisos', name: 'CentroAvisos', component: CentroAvisos, meta: { requiresAuth: true } }
 ];
 
 const router = createRouter({
